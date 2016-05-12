@@ -83,7 +83,7 @@ public class MyServlet extends HttpServlet {
 
 
                 //navigate to the translater page in case login is valid
-                RequestDispatcher rd = request.getRequestDispatcher("navbar.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
                 rd.forward(request, response);
             } catch (Exception e) {
                 throw new ServletException(e);

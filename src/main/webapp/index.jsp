@@ -2,6 +2,7 @@
 
 <!--including JSTL to the page -->
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <head>
@@ -28,15 +29,19 @@
 
 <body >
 
+<fmt:setLocale value="En"/>
+<fmt:bundle basename="labelNames">
+
 <!-- Nav Bar -->
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
+
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">Online Translater Website</a>
+            <a class="navbar-brand" href="#"><fmt:message key="loginpage.navbar.heading"/></a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
+            <li class="active"><a href="#"><fmt:message key="loginpage.navbar.nav1"/></a></li>
+            <li><a href="#"><fmt:message key="loginpage.navbar.nav2"/></a></li>
 
         </ul>
     </div>
@@ -49,7 +54,9 @@
 
         <div class="container center">
             <div class="row">
-                <h1><strong> Online Translater </strong>  Home Page</h1>
+                <h1><strong><fmt:message key="loginpage.heading.bold"/></strong>
+                    <fmt:message key="loginpage.heading.notbold"/></h1>
+
                 <jsp:include page="header.jsp">
                     <jsp:param name="title" value="My website"/>
                 </jsp:include>
@@ -63,7 +70,7 @@
                         <div class="form-top">
 
                             <div class="form-top-left">
-                                <h3>Login to our site</h3>
+                                <h3><fmt:message key="loginpage.form.title"/></h3>
 
                             </div>
                             <div class="form-top-right">
@@ -74,7 +81,7 @@
                         <div class="form-bottom">
                             <form class="form-horizontal" role="form" name="login"  method="post" action="MyServlet" >
                                 <div class="form-group ">
-                                    <label class="control-label col-sm-4" >Username:</label>
+                                    <label class="control-label col-sm-4" ><fmt:message key="loginpage.form.uname"/></label>
 
                                     <div class="col-sm-8"> <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username"></div>
 
@@ -84,7 +91,7 @@
 
                                 <div class="form-group">
 
-                                    <label class="control-label col-sm-4" >Password:</label>
+                                    <label class="control-label col-sm-4" ><fmt:message key="loginpage.form.pw"/></label>
 
                                     <div class="col-sm-8"> <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password"></div>
 
@@ -149,6 +156,8 @@
 
     <jsp:include page="footer.jsp" />
 </footer>
+
+</fmt:bundle>
 </body>
 
 </html>
