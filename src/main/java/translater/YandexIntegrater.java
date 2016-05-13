@@ -131,7 +131,7 @@ public class YandexIntegrater {
 
         HttpResponse response2 ;
         try {
-
+            LOG.info("Inside the try of the text translate");
             response2 = httpClientTranslate.execute(request);
             HttpEntity entity2= response2.getEntity();
             LOG.warn("Null Response returns an Exception");

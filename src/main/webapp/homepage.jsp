@@ -46,23 +46,23 @@
   <nav class="navbar navbar-default navbar-fixed-top ">
      <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#"><fmt:message key="loginpage.homepage.navbar.heading"/></a>
+        <a class="navbar-brand" href="#"><fmt:message key="homepage.navbar.heading"/></a>
       </div>
 
       <ul class="nav navbar-nav nav-tabs">
-        <li class="active"><a href="#mydropdown1" data-toggle="tab"><fmt:message key="loginpage.homepage.navbar.nav1"/></a></li>
+        <li class="active"><a href="#mydropdown1" data-toggle="tab"><fmt:message key="homepage.navbar.nav1"/></a></li>
 
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="loginpage.homepage.navbar.nav2"/><span class="caret"></span></a>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="homepage.navbar.nav2"/><span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a data-toggle="tab" href="#dropdown1"><fmt:message key="loginpage.homepage.navbar.nav2.tab1"/></a></li>
-            <li><a data-toggle="tab" href="#dropdown2"><fmt:message key="loginpage.homepage.navbar.nav2.tab2"/></a></li>
+            <li><a data-toggle="tab" href="#dropdown1"><fmt:message key="homepage.navbar.nav2.tab1"/></a></li>
+            <li><a data-toggle="tab" href="#dropdown2"><fmt:message key="homepage.navbar.nav2.tab2"/></a></li>
 
            </ul>
         </li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="loginpage.homepage.navbar.logout"/></a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="homepage.navbar.logout"/></a></li>
       </ul>
 
      </div>
@@ -77,7 +77,7 @@
       <div class="container center">
 
         <div class="row">
-          <h1><strong> Online Translater </strong> User Page</h1>
+          <h1><strong><fmt:message key="homepage.heading.bold"/></strong><fmt:message key="homepage.heading.notbold"/></h1>
          <%-- <jsp:include page="header.jsp">
             <jsp:param name="title" value="My website"/>
           </jsp:include>--%>
@@ -90,7 +90,8 @@
       <div class="row">
         <div class="tab-content">
           <div id="mydropdown1" class="tab-pane fade in active">
-            <h3><strong>Translate Your Text</strong></h3>
+            <h3><strong><fmt:message key="homepage.form.title"/></strong></h3>
+
               <jsp:include page="translater.jsp">
                 <jsp:param name="title" value="My translater"/>
               </jsp:include>
@@ -99,7 +100,6 @@
 
           <div id="dropdown1" class="tab-pane fade">
             <%--<h3><strong>Add a New User</strong></h3>--%>
-
 
               <jsp:include page="adduser.jsp">
                   <jsp:param name="title" value="Add User"/>

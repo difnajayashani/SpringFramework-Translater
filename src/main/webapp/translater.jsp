@@ -1,6 +1,11 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page">
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<html xmlns:jsp="http://java.sun.com/JSP/Page">
+<!--including JSTL to the page -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 
 <head>
@@ -43,29 +48,32 @@
                             <div class="form-group ">
                                 <div class="col-sm-6">
 
-                                <%
-                                    out.println("<textarea name=\"original-text\" class=\"form-control\" rows=\"5\" cols=\"10\"  id=\"text_origi\" >");
-                                    String s1= (String)request.getAttribute("original");
-                                    if (s1 != null){
-                                        out.println(s1);
-                                    }
 
-                                    out.println("</textarea>");
-                                %>
+                                 <textarea name="original-text" class="form-control" id="original-text" rows="5" cols="10">
+                                     <%
+                                        String s1= (String)request.getAttribute("original");
+                                        request.setAttribute("s1",s1);
+                                    %>
+                                    <c:if test="${s1 != null}"/>
+                                        <c:out value="${s1}"/>
+
+                                 </textarea>
+
+
                                 </div>
 
                                 <div class="col-sm-6">
 
                                     <textarea class="form-control"  name="translated-text" id="text_trans" rows="5" cols="10">
 
-                                    <% String s2= (String)request.getAttribute("translated");
-                                        if (s2 != null){
-                                            out.println(s2);
-                                        }
-
-
+                                    <%
+                                        String s2= (String)request.getAttribute("translated");
+                                        request.setAttribute("s2",s2);
                                     %>
-                                </textarea>
+                                        <c:if test="${s2 != null}"/>
+                                        <c:out value="${s2}"/>
+
+                                    </textarea>
                                 </div>
                         </div>
 
@@ -76,24 +84,31 @@
                             <select class="form-control" name="original-lang" id="original" style="z-index: 1; width: 200px; padding:0px; position:absolute;">
 
                                 <%
-
                                     String buf_sel1=(String)request.getAttribute("selected_ol");
+                                    request.setAttribute("buf_sel1",buf_sel1);
+
                                     ArrayList<String>  buffer=new ArrayList<String>();
                                     buffer= (ArrayList<String>)request.getAttribute("language_list");
+                                    request.setAttribute("buffer",buffer);
 
-                                    for(int i=0;i<buffer.size();i++){
 
-                                        if( buf_sel1 !=null ){
-                                            out.println("<option>" + buf_sel1 + "</option>");
-                                            break;
-                                        }
-                                        else
-
-                                            out.println("<option>"+buffer.get(i)+"</option>");
-
-                                    }
                                 %>
 
+                                 <c:forEach varStatus="i" items="${buffer}">
+                                     <%--<option value="<c:out value="${buffer[i.index]}"/>"></option>--%>
+                                     <option>${buffer[i.index]}</option>
+                                <%--   <c:choose>
+                                       <c:when test="${buf_sel1 != null}">
+                                           <option value="<c:out value="${buf_sel1}"/>"
+                                       </c:when>
+                                       <c:otherwise>
+
+                                           <option value="<c:out value="${i}"/>"
+
+                                       </c:otherwise>
+                                   </c:choose>--%>
+
+                             </c:forEach>
 
                                 </select>
 
@@ -104,19 +119,29 @@
                                     <%
 
                                         String buf_sel2=(String)request.getAttribute("selected_tl");
+                                        request.setAttribute("buf_sel1",buf_sel2);
+
                                         ArrayList<String>  buffer2=new ArrayList<String>();
                                         buffer2= (ArrayList<String>)request.getAttribute("language_list");
-                                        for(int i=0;i<buffer2.size();i++){
-                                            if( buf_sel2 !=null ){
-                                                out.println("<option>" + buf_sel2 + "</option>");
-                                                break;
-                                            }
-                                            else
-
-                                                out.println("<option>"+buffer.get(i)+"</option>");
-                                        }
+                                        request.setAttribute("buffer2",buffer2);
 
                                     %>
+
+                                    <c:forEach varStatus="i" items="${buffer2}">
+                                        <%--<option value="<c:out value="${buffer2[i.index]}"/>"></option>--%>
+                                        <option>${buffer2[i.index]}</option>
+                                        <%--   <c:choose>
+                                               <c:when test="${buf_sel1 != null}">
+                                                   <option value="<c:out value="${buf_sel1}"/>"
+                                               </c:when>
+                                               <c:otherwise>
+
+                                                   <option value="<c:out value="${i}"/>"
+
+                                               </c:otherwise>
+                                           </c:choose>--%>
+
+                                    </c:forEach>
                                     </select>
 
                             </div>

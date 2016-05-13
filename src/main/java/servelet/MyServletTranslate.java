@@ -41,6 +41,8 @@ public class MyServletTranslate extends HttpServlet {
             String textInput = request.getParameter("original-text");
             request.setAttribute("original", textInput);
 
+         LOG.info("The text input: {}", textInput);
+
 
          String textOutput=null;
 
@@ -50,6 +52,7 @@ public class MyServletTranslate extends HttpServlet {
                 LOG.trace("call the translate method");
                 textOutput =getReply.translateText(ol, tl, textInput);
                 LOG.info("translated successfully returned", textOutput);
+
             } catch (Exception e) {
                 LOG.fatal("Exception occurred in translateText method");
             }
@@ -71,7 +74,7 @@ public class MyServletTranslate extends HttpServlet {
             request.setAttribute("translated", textOutput);
 
          /** reloadd the same page **/
-            request.getRequestDispatcher("navbar.jsp").forward(request, response);;
+            request.getRequestDispatcher("homepage.jsp").forward(request, response);;
 
 
 
