@@ -7,15 +7,20 @@ import org.apache.logging.log4j.Logger;
 
 import translater.YandexIntegrater;
 import validate.LoginValidate;
+import validate.PermissionValidate;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import static validate.PermissionValidate.*;
 
 /**
  * sevelet class to take the login form inputs and validate the user
@@ -54,7 +59,25 @@ public class MyServlet extends HttpServlet {
 
 
         /** connect to the database pool**/
-      DatabaseUtility dbPool=(DatabaseUtility)getServletContext().getAttribute("DBManager");
+        DatabaseUtility dbPool=(DatabaseUtility)getServletContext().getAttribute("DBManager");
+
+
+
+        //method to validate the permissions of the user
+
+        /**create a new array list */
+        ArrayList<String> permissionList = new ArrayList<String>();
+
+        try {
+            permissionList= PermissionValidate.permission(n, dbPool.getConnection());
+
+
+            HttpSession session = request.getSession();
+            session.setAttribute(" permissionList",  permissionList);
+
+        } catch (SQLException e) {
+            LOG.error("SQL Exception in obtaining permission list");
+        }
 
 
         /**validate the login by calling validate function */
@@ -69,7 +92,6 @@ public class MyServlet extends HttpServlet {
         }
 
         if (valid) {
-
 
             LOG.info("The user is valid");
             try {

@@ -115,3 +115,24 @@ $(document).ready(function(){
 
     });
 });
+
+
+$(document).ready(function(){
+    $("#addbtn").click(function(){
+        var uname = $(".user_name").val();
+    /*    $.ajax({
+        type: "POST",
+        url: "CheckAvailability",
+        data: {"uname": uname},
+
+        success: function(msg){
+            if(msg == 1)
+                alert("User name exists !... try another");
+             },
+        error:function(){
+                alert("ajax failed" +uname);
+        }
+        });*/
+
+     });
+ });

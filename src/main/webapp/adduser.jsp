@@ -1,18 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hsenid
-  Date: 4/22/16
-  Time: 5:14 PM
-  To change this template use File | Settings | File Templates.
---%>
+<html xmlns:jsp="http://java.sun.com/JSP/Page">
+
+<!--including JSTL to the page -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<html>
 <head>
 
-    <title>Add New User</title>
-
-
+    <title><fmt:message key="adduser.title"/></title>
 
     <!-- CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +34,9 @@
 
 <body>
 
+<fmt:setLocale value="En"/>
+<fmt:bundle basename="labelNames">
+
 <!-- Top content -->
 
     <center>
@@ -49,8 +47,8 @@
 
                 <div class="form-top-left">
 
-                    <h3>New User Sign up</h3>
-                    <p>Fill in the form below to add a new user:</p>
+                    <h3><fmt:message key="adduser.heading"/></h3>
+                    <p><fmt:message key="adduser.heading.paragraph"/></p>
                 </div>
 
                 <div class="form-top-right">
@@ -65,7 +63,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-4">First name *</label>
+                        <label class="col-sm-4"><fmt:message key="adduser.form.firstname"/></label>
                         <div class="col-sm-8">
                             <input type="text" name="form-first-name" placeholder="First name..."
                                    class="form-control" id="form-first-name" required>
@@ -76,7 +74,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-4 " >Last name</label>
+                        <label class="col-sm-4 " ><fmt:message key="adduser.form.lastname"/></label>
                         <div class="col-sm-8">
                             <input type="text" name="form-last-name" placeholder="Last name..."
                                    class="form-control" id="form-last-name">
@@ -85,7 +83,7 @@
 
 
                     <div class="form-group">
-                        <label for="date" class="col-sm-4 " >  Date of Birth *:</label>
+                        <label for="date" class="col-sm-4 " ><fmt:message key="adduser.form.birthdate"/></label>
                         <div class="col-sm-8">
                             <input type="text" name="date" class="form-control" id="date" required="">
                         </div>
@@ -94,10 +92,10 @@
 
 
                     <div class="form-group">
-                        <label for="country" class="col-sm-4 " >Country *</label>
+                        <label for="country" class="col-sm-4 " ><fmt:message key="adduser.form.country"/></label>
                         <div class="col-sm-8">
                             <select class="form-control" name="country" id="country" required>
-                                <option>--Select--</option>
+                                <option><fmt:message key="adduser.form.select"/></option>
                                 <option value="Sri Lanka">Sri Lanka</option>
                                 <option value="India">India</option>
                                 <option value="Japan">Japan</option>
@@ -111,10 +109,10 @@
 
 
                     <div class="form-group">
-                        <label for="form-city" class="col-sm-4 ">City*</label>
+                        <label for="form-city" class="col-sm-4 "><fmt:message key="adduser.form.city"/></label>
                         <div class="col-sm-8">
                             <select class="form-control" id="form-city" name="form-city" required>
-                                <option>--Select--</option>
+                                <option><fmt:message key="adduser.form.select"/></option>
                             </select>
                         </div>
 
@@ -124,7 +122,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-4 ">Email* (eg:xxx@gmail.com)</label>
+                        <label class="col-sm-4 "><fmt:message key="adduser.form.email"/></label>
                         <div class="col-sm-8">
                             <input type="text" name="form-email" placeholder="Email..." class="form-email form-control"
                                    id="form-email" pattern="^[_a-zA-Z0-9-]+(\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\.
@@ -135,9 +133,9 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-4">Mobile* (+94xxxxxxxxx)</label>
+                        <label class="col-sm-4"><fmt:message key="adduser.form.mobile"/></label>
                         <div class="col-sm-8">
-                            <input type="text" name="form-mobile" placeholder="94xxxxxxxxx"
+                            <input type="text" name="form-mobile" placeholder="+94xxxxxxxxx"
                                    class="form-mobile form-control" id="form-mobile" pattern="^\(?(\+94)\)?([0-9]{9})$"
                                    required>
                         </div>
@@ -146,7 +144,7 @@
 
 
                     <div class="form-group ">
-                        <label class="col-sm-4 " >Username *</label>
+                        <label class="col-sm-4 " ><fmt:message key="adduser.form.username"/></label>
                         <div class="col-sm-8">
                             <input type="text" name="username" placeholder="Username..." class="user_name form-control"
                                    id="form-username" required/>
@@ -157,7 +155,7 @@
 
 
                     <div class="form-group">
-                        <label class="col-sm-4 " >Password *</label>
+                        <label class="col-sm-4 " ><fmt:message key="adduser.form.password"/></label>
                         <div class="col-sm-8">
                             <input type="password" name="password" placeholder="Password..."
                                    class="form-password form-control"  id="form-password"
@@ -169,7 +167,7 @@
 
 
                     <div class="form-group">
-                        <label  class="col-sm-4 " >Confirm pw *</label>
+                        <label  class="col-sm-4 " ><fmt:message key="adduser.form.cpassword"/></label>
                         <div class="col-sm-8">
                             <input type="password" name="cnpassword" placeholder="Confirm Password..."
                                    class="form-password form-control" id="form-password-confirm"
@@ -179,10 +177,10 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="group" class="col-sm-4" >Country *</label>
+                        <label for="group" class="col-sm-4" ><fmt:message key="adduser.form.group"/></label>
                         <div class="col-sm-8">
                             <select class="form-control" name="group" id="group" required>
-                                <option>--Select--</option>
+                                <option><fmt:message key="adduser.form.select"/></option>
                                 <option value="Administrator">Administrator</option>
                                 <option value="Customer Care">Customer Care</option>
                                 <option value="Translater">Translater</option>
@@ -192,14 +190,12 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
 
-                        <button type="submit" class="btn" id="addbtn">Add User</button>
+                        <button type="submit" class="btn" id="addbtn">
+                            <fmt:message key="viewuser.modal.updateuser.button"/></button>
 
                     </div>
-
-
 
                 </form>
 
@@ -207,6 +203,6 @@
         </div>
     </center>
 
-
-</body>
+    </fmt:bundle>
+    </body>
 </html>

@@ -62,7 +62,7 @@
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="homepage.navbar.logout"/></a></li>
+        <li><a href="http://localhost:8080/LogoutServlet"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="homepage.navbar.logout"/></a></li>
       </ul>
 
      </div>

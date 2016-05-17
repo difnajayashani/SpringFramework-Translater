@@ -37,6 +37,9 @@
 
 <body >
 
+<fmt:setLocale value="En"/>
+<fmt:bundle basename="labelNames">
+
 <div class="row">
     <div class="container-fluid">
         <center>
@@ -81,7 +84,8 @@
 
                     <div class="form-group ">
                         <div class=" col-sm-6">
-                            <select class="form-control" name="original-lang" id="original" style="z-index: 1; width: 200px; padding:0px; position:absolute;">
+                            <select class="form-control" name="original-lang" id="original" style="z-index: 1;
+                             width: 200px; padding:0px; position:absolute;">
 
                                 <%
                                     String buf_sel1=(String)request.getAttribute("selected_ol");
@@ -95,31 +99,35 @@
                                 %>
 
                                  <c:forEach varStatus="i" items="${buffer}">
-                                     <%--<option value="<c:out value="${buffer[i.index]}"/>"></option>--%>
-                                     <option>${buffer[i.index]}</option>
-                                <%--   <c:choose>
+
+                                    <c:choose>
                                        <c:when test="${buf_sel1 != null}">
-                                           <option value="<c:out value="${buf_sel1}"/>"
+
+                                           <option selected="selected"><%--<c:out value="${buf_sel1}"/>--%>${buf_sel1}
+                                           </option>
+                                           <option>${buffer[i.index]}</option>
+
                                        </c:when>
                                        <c:otherwise>
 
-                                           <option value="<c:out value="${i}"/>"
+                                           <option>${buffer[i.index]}</option>
 
                                        </c:otherwise>
-                                   </c:choose>--%>
+                                   </c:choose>
 
-                             </c:forEach>
+                                 </c:forEach>
 
                                 </select>
 
                             </div>
 
                             <div class=" col-sm-6">
-                                <select class="form-control" name="translate-lang" id="translated" style="z-index: 1; width: 200px; padding:0px; position:absolute;">
+                                <select class="form-control" name="translate-lang" id="translated" style="z-index: 1;
+                                 width: 200px; padding:0px; position:absolute;">
                                     <%
 
                                         String buf_sel2=(String)request.getAttribute("selected_tl");
-                                        request.setAttribute("buf_sel1",buf_sel2);
+                                        request.setAttribute("buf_sel2",buf_sel2);
 
                                         ArrayList<String>  buffer2=new ArrayList<String>();
                                         buffer2= (ArrayList<String>)request.getAttribute("language_list");
@@ -128,18 +136,19 @@
                                     %>
 
                                     <c:forEach varStatus="i" items="${buffer2}">
-                                        <%--<option value="<c:out value="${buffer2[i.index]}"/>"></option>--%>
-                                        <option>${buffer2[i.index]}</option>
-                                        <%--   <c:choose>
-                                               <c:when test="${buf_sel1 != null}">
-                                                   <option value="<c:out value="${buf_sel1}"/>"
+
+                                          <c:choose>
+                                               <c:when test="${buf_sel2 != null}">
+                                                   <option selected="selected"><%--<c:out value="${buf_sel1}"/>--%>
+                                                   ${buf_sel2}</option>
+                                                   <option>${buffer2[i.index]}</option>
                                                </c:when>
                                                <c:otherwise>
 
-                                                   <option value="<c:out value="${i}"/>"
+                                                   <option>${buffer2[i.index]}</option>
 
                                                </c:otherwise>
-                                           </c:choose>--%>
+                                           </c:choose>
 
                                     </c:forEach>
                                     </select>
@@ -164,7 +173,8 @@
 
                                 <input type="submit" class="btn btn-primary  " value=Translate  name="submit"/>
 
-                                <button type="button" class="btn btn-primary"  onclick="myFunction()">Swap the Text</button>
+                                <button type="button" class="btn btn-primary"  onclick="myFunction()"><fmt:message
+                                        key="translater.button.swaptext"/></button>
 
                                 <input type="reset" class="btn btn-primary" value="Reset"/>
 
@@ -193,16 +203,23 @@
 <div class="row">
     <div class="form-group ">
         <div id="logout">
-            <a href="http://localhost:8080/Bootstrap_Translater/LogoutServlet">Logout</a>
+            <a href="http://localhost:8080/LogoutServlet"><fmt:message key="translater.label.logout"/></a>
         </div>
     </div>
 
     <div class="form-group ">
-        <p  style="color:blue"> Logged in as
-            <%=request.getAttribute("name")%>
+        <p  style="color:blue"><strong><fmt:message key="translater.label.loggedinuser"/>
+            <%
+                request.setAttribute("name", request.getAttribute("name"));
+            %>
+            <c:set var="name" scope="request" value="${name}"/>
+            <c:out value="${name}"/>
+        </strong>
         </p>
     </div>
 </div>
+
+</fmt:bundle>
 </body>
 
 
