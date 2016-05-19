@@ -100,6 +100,7 @@
 
                                  <c:forEach varStatus="i" items="${buffer}">
 
+
                                     <c:choose>
                                        <c:when test="${buf_sel1 != null}">
 

@@ -1,4 +1,4 @@
-
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
@@ -42,27 +42,66 @@
 <fmt:setLocale value="En"/>
 <fmt:bundle basename="labelNames">
 
+  <%
+
+    request.setAttribute("buffer",request.getSession().getAttribute("permissionList"));
+  %>
+  
+
   <!-- Nav bar declared -->
   <nav class="navbar navbar-default navbar-fixed-top ">
      <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#"><fmt:message key="homepage.navbar.heading"/></a>
-      </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#"><fmt:message key="homepage.navbar.heading"/></a>
+        </div>
 
-      <ul class="nav navbar-nav nav-tabs">
-        <li class="active"><a href="#mydropdown1" data-toggle="tab"><fmt:message key="homepage.navbar.nav1"/></a></li>
+          <ul class="nav navbar-nav nav-tabs">
 
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><fmt:message key="homepage.navbar.nav2"/><span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a data-toggle="tab" href="#dropdown1"><fmt:message key="homepage.navbar.nav2.tab1"/></a></li>
-            <li><a data-toggle="tab" href="#dropdown2"><fmt:message key="homepage.navbar.nav2.tab2"/></a></li>
+            <%-- setting permission for translater tab --%>
+            <c:forEach var="permission" items="${buffer}">
+                    <c:choose>
+                      <c:when test="${permission == 'Translate'}">
+                        <li class="active"><a href="#mydropdown1" data-toggle="tab"><fmt:message key="homepage.navbar.nav1"/></a></li>
+                      </c:when>
+                    </c:choose>
+            </c:forEach>
 
-           </ul>
-        </li>
 
-      </ul>
+                <%-- setting permission for user add tab --%>
+              <c:forEach var="permission" items="${buffer}">
+                    <c:choose>
+                      <c:when test="${permission == 'Add User'}">
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <fmt:message key="homepage.navbar.nav2"/><span class="caret"></span></a>
+
+                                <ul class="dropdown-menu">
+
+                                    <li><a data-toggle="tab" href="#dropdown1">
+                                      <fmt:message key="homepage.navbar.nav2.tab1"/></a></li>
+
+                                  </c:when>
+                                  </c:choose>
+                                  </c:forEach>
+
+
+                                    <%-- setting permission for user view tab --%>
+                                  <c:forEach var="permission" items="${buffer}">
+                                    <c:choose>
+                                      <c:when test="${permission == 'Add User' || 'Search User' || 'Edit User' ||
+                                       'Delete User'}">
+
+                                        <li><a data-toggle="tab" href="#dropdown2">
+                                          <fmt:message key="homepage.navbar.nav2.tab2"/></a></li>
+                                      </c:when>
+                                    </c:choose>
+                                  </c:forEach>
+                                </ul>
+                            </li>
+                        </ul>
+
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost:8080/LogoutServlet"><span class="glyphicon glyphicon-log-out"></span> <fmt:message key="homepage.navbar.logout"/></a></li>
+        <li><a href="http://localhost:8080/LogoutServlet"><span class="glyphicon glyphicon-log-out"></span>
+          <fmt:message key="homepage.navbar.logout"/></a></li>
       </ul>
 
      </div>
@@ -78,44 +117,67 @@
 
         <div class="row">
           <h1><strong><fmt:message key="homepage.heading.bold"/></strong><fmt:message key="homepage.heading.notbold"/></h1>
-         <%-- <jsp:include page="header.jsp">
-            <jsp:param name="title" value="My website"/>
-          </jsp:include>--%>
 
         </div>
 
       </div>
 
+
       <!-- Nav bar tabs content -->
       <div class="row">
         <div class="tab-content">
           <div id="mydropdown1" class="tab-pane fade in active">
-            <h3><strong><fmt:message key="homepage.form.title"/></strong></h3>
 
-              <jsp:include page="translater.jsp">
-                <jsp:param name="title" value="My translater"/>
-              </jsp:include>
+            <c:forEach var="permission" items="${buffer}">
+              <c:choose>
+                <c:when test="${permission == 'Translate'}">
+                  <h3><strong><fmt:message key="homepage.form.title"/></strong></h3>
 
+                      <%--   <c:import var="data1" url="translater.jsp"/>
+                            <c:out value="${data1}"/>
+                      --%>
+
+                      <jsp:include page="translater.jsp">
+                          <jsp:param name="title" value="My translater"/>
+                      </jsp:include>
+
+                </c:when>
+              </c:choose>
+            </c:forEach>
           </div>
+
 
           <div id="dropdown1" class="tab-pane fade">
-            <%--<h3><strong>Add a New User</strong></h3>--%>
+            <c:forEach var="permission" items="${buffer}">
+              <c:choose>
+                <c:when test="${permission == 'Add User'}">
 
-              <jsp:include page="adduser.jsp">
-                  <jsp:param name="title" value="Add User"/>
-              </jsp:include>
-
+                  <jsp:include page="adduser.jsp">
+                      <jsp:param name="title" value="Add User"/>
+                  </jsp:include>
+                </c:when>
+              </c:choose>
+            </c:forEach>
           </div>
+
 
           <div id="dropdown2" class="tab-pane fade">
             <%--<h3><strong>View Users</strong></h3>--%>
+              <c:forEach var="permission" items="${buffer}">
+                <c:choose>
+                  <c:when test="${permission == 'Add User' || 'Search User' || 'Edit User' || 'Delete User'}">
 
-
-              <jsp:include page="viewuser.jsp">
-                  <jsp:param name="title" value="Add User"/>
-              </jsp:include>
+                    <jsp:include page="viewuser.jsp">
+                        <jsp:param name="title" value="Add User"/>
+                    </jsp:include>
+                  </c:when>
+                </c:choose>
+              </c:forEach>
           </div>
+
+
         </div>
+
       </div>
 
     </div>

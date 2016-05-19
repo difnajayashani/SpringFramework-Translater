@@ -83,7 +83,9 @@ public class AddUserServlet  extends HttpServlet {
                     LOG.info("The user is inserted successfully");
 
                     LOG.info("query to update the User_Group table");
-                    String extraQuery="INSERT INTO user_group ( `user_id` ,`group_id`)" + "VALUES ((SELECT id FROM user WHERE username= \"" + u_name + "\"),(SELECT id FROM functional_group WHERE name=\"" +group+ "\"))";
+                    String extraQuery="INSERT INTO user_group ( `user_id` ,`group_id`)" + "VALUES " +
+                            "((SELECT id FROM user WHERE username= \"" + u_name + "\")," +
+                            "(SELECT id FROM functional_group WHERE name=\"" +group+ "\"))";
 
 
                     /** create a statement for User_Group database table update*/

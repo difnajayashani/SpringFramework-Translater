@@ -150,10 +150,12 @@
 
 
                                 <div class="form-group">
-
-                                    <%@include file="datepicker_update.jsp" %>
-
+                                    <label for="date2" class="col-sm-4 control-label" ><fmt:message key="adduser.form.birthdate"/></label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="date2" class="form-control" id="date2" required="">
+                                    </div>
                                 </div>
+
 
                                 <div class="form-group">
                                     <label for="update-country" class="col-sm-4 control-label" >
@@ -176,7 +178,7 @@
                                         <fmt:message key="adduser.form.city"/></label>
                                     <div class="col-sm-8">
                                         <select class="form-control" id="update-city" name="update-city" required>
-                                            <option>--Select--</option>
+                                            <option><fmt:message key="adduser.form.select"/></option>
                                         </select>
                                     </div>
 

@@ -53,3 +53,45 @@ function validatePassword(fld) {
         }
         return true;
     }
+
+
+<!--javascript to load the cities pertaing to the country -->
+
+$(document).ready(function(){
+    $("#update-country").change(function () {
+
+        var country = $(this).val();
+
+        $.ajax({
+            type: "POST",
+            url: "LoadCityServlet",
+            dataType: "JSON",
+            data: {"country": country},
+            success: function (data) {
+                /* var data1 = JSON.stringify(data);
+                 alert("the cities" +data1);*/
+                var  formCity = $("#update-city"), option = "";
+                formCity.empty();
+
+                for (var C = 0; C < data.length; C++) {
+                    option = option + "<option value='" + data[C].cityName + "'>" + data[C].cityName + "</option>";
+                }
+                formCity.append(option);
+            }
+        })
+    })
+
+});
+
+
+
+$(document).ready(function(){
+    $('#date2').daterangepicker({
+
+
+        "singleDatePicker": true,
+        "showDropdowns": true,
+        "startDate": "04/22/2016"
+
+    });
+});

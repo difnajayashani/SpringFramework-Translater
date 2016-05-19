@@ -193,7 +193,7 @@
                     <div class="form-group">
 
                         <button type="submit" class="btn" id="addbtn">
-                            <fmt:message key="viewuser.modal.updateuser.button"/></button>
+                            <fmt:message key="adduser.form.addbutton"/></button>
 
                     </div>
 

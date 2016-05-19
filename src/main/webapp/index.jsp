@@ -83,7 +83,8 @@
                                 <div class="form-group ">
                                     <label class="control-label col-sm-4" ><fmt:message key="loginpage.form.uname"/></label>
 
-                                    <div class="col-sm-8"> <input type="text" name="username" placeholder="Username..." class="form-username form-control" id="form-username"></div>
+                                    <div class="col-sm-8"> <input type="text" name="username" placeholder="Username..."
+                                                                  class="form-username form-control" id="form-username"></div>
 
 
 
@@ -93,7 +94,8 @@
 
                                     <label class="control-label col-sm-4" ><fmt:message key="loginpage.form.pw"/></label>
 
-                                    <div class="col-sm-8"> <input type="password" name="password" placeholder="Password..." class="form-password form-control" id="form-password"></div>
+                                    <div class="col-sm-8"> <input type="password" name="password" placeholder=
+                                            "Password..." class="form-password form-control" id="form-password"></div>
 
 
                                 </div>
@@ -103,7 +105,7 @@
 
                                     <div class="col-sm-4"></div>
                                     <div class=" col-sm-4">
-                                        <button type="submit" class="btn">Sign in!</button>
+                                        <button type="submit" class="btn" >Sign in!</button>
 
                                     </div>
 
