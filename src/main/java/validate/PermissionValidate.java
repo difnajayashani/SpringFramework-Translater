@@ -87,18 +87,20 @@ public class PermissionValidate {
 
         ArrayList<String> ex1 ;
         String searchString ="Login";
+        String otherString ="Translate";
         DatabaseUtility d = new DatabaseUtility();
         Connection con = null;
 
         try {
             con = d.getConnection();
 
-            ex1 = PermissionValidate.permission("hasitha",con);
+            ex1 = PermissionValidate.permission("difna",con);
 
             LOG.info("Permission list is: {}.", ex1);
 
             /** arraylist  is checked gor the Login permission**/
             boolean logPermission = false;
+            boolean transPermission = false;
 
             LOG.trace("check if Login permission exists in the permission arraylist");
 
@@ -106,9 +108,15 @@ public class PermissionValidate {
                 if( val.contains(searchString) ){
                     logPermission=true;
                     LOG.info("LOG permission stay");
+                }else if( val.contains(otherString)){
+                   transPermission=true;
+                    LOG.info("LOG permission stay");
+
                 }
             }
             LOG.info("logPermission is: {}",logPermission);
+
+            LOG.info("transPermission is: {}",transPermission);
 
         } catch (SQLException e) {
             e.printStackTrace();

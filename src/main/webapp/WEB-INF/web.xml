@@ -93,6 +93,7 @@
 
     </servlet>
 
+
     <servlet-mapping>
         <servlet-name>servlet1</servlet-name>
         <url-pattern>/MyServlet</url-pattern>
@@ -149,5 +150,6 @@
         <servlet-name>servlet11</servlet-name>
         <url-pattern>/LoadCityServlet</url-pattern>
     </servlet-mapping>
+
 
 </web-app>

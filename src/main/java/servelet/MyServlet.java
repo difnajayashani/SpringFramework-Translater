@@ -50,9 +50,13 @@ public class MyServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
+        /** session created for permission validation**/
+        HttpSession session = request.getSession();
+
         /** username and password entered to the form are captured*/
         String n = request.getParameter("username");
         String p = request.getParameter("password");
+
 
         /**set the logged in user's name */
         request.setAttribute("name", n);
@@ -64,6 +68,8 @@ public class MyServlet extends HttpServlet {
         LOG.trace("connection pool instantiated");
 
 
+/**----------------------------------------------------------------------------------------------------------------------- **/
+
         /**
          * call the method to validate the permissions of the user
          * takes an arraylist containing the permission of the going to login user
@@ -74,19 +80,20 @@ public class MyServlet extends HttpServlet {
 
         try {
             LOG.trace("call the permission validate from the servlet");
-            permissionList= PermissionValidate.permission(n, dbPool.getConnection());
+            permissionList = PermissionValidate.permission(n, dbPool.getConnection());
             LOG.trace("return the permission list to the servlet");
-            LOG.info("Permission list is : {}",permissionList);
+            LOG.info("Permission list is : {}", permissionList);
 
 
+            /** set the permissionList array list**/
             LOG.info("set the permission list attribute in servlet");
-            HttpSession session = request.getSession();
-           session.setAttribute(" permissionList",  permissionList);
+            session.setAttribute(" permissionList", permissionList);
+//            request.getRequestDispatcher("homepage.jsp").forward(request,response);
 
 
         } catch (SQLException e) {
             LOG.error("SQL Exception in obtaining permission list in servlet");
-        }finally {
+        } finally {
             try {
                 dbPool.getConnection().close();
             } catch (SQLException e) {
@@ -94,20 +101,23 @@ public class MyServlet extends HttpServlet {
             }
         }
 
-
         /** arraylist  is checked for each permission**/
-        boolean logPermission=false;
-
+        boolean logPermission = false;
 
         LOG.trace("check if Login permission exists in the permission arraylist");
-        String searchLog="Login";
-        for (String val :  permissionList) {
-            if( val.contains(searchLog) ){
-                logPermission=true;
+        String searchLog = "Login";
+        for (String val : permissionList) {
+            if (val.contains(searchLog)) {
+                logPermission = true;
+
                 LOG.info("LOG permission stay");
             }
         }
-        LOG.info("logPermission is: {}",logPermission);
+
+        LOG.info("logPermission is: {}", logPermission);
+
+/** ---------------------------------------------------------------------------------------------------------------**/
+
         /**
          * call the method to validate the login
          * to get authentication using username and password
@@ -125,7 +135,7 @@ public class MyServlet extends HttpServlet {
             try {
                 dbPool.getConnection().close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOG.error("Error in closing the database connection of user validation");
             }
         }
 
@@ -133,6 +143,9 @@ public class MyServlet extends HttpServlet {
          * the logic to validate whether user exists and
          * the LOGIN permission exists for the user to log in
          * **/
+
+        //obtain the logPermission value from UserPermissionServlet
+
 
          if (valid) {
             LOG.info("The user is a registered user");
@@ -172,9 +185,9 @@ public class MyServlet extends HttpServlet {
                  JOptionPane.showMessageDialog(null, msg);
              }
 
-        } else {
+         } else {
 
-            LOG.error("User doesn't exit... Cannot proceed");
+             LOG.error("User doesn't exit... Cannot proceed");
             request.setAttribute("error", "Sorry username or password error");
 
             //out.print("<p style=\"color:blue\">Sorry username or password error</p>");
