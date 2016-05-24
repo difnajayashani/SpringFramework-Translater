@@ -50,8 +50,6 @@ public class MyServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
-        /** session created for permission validation**/
-        HttpSession session = request.getSession();
 
         /** username and password entered to the form are captured*/
         String n = request.getParameter("username");
@@ -87,8 +85,11 @@ public class MyServlet extends HttpServlet {
 
             /** set the permissionList array list**/
             LOG.info("set the permission list attribute in servlet");
+
+            /** session created for permission validation**/
+            HttpSession session = request.getSession();
             session.setAttribute(" permissionList", permissionList);
-//            request.getRequestDispatcher("homepage.jsp").forward(request,response);
+//         request.getRequestDispatcher("homepage.jsp").forward(request,response);
 
 
         } catch (SQLException e) {
