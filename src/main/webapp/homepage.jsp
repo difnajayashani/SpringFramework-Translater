@@ -61,7 +61,7 @@
             </div>
 
             <!-- permission set for Translate permission-->
-            <ul class="nav navbar-nav nav-tabs">
+            <ul class="nav navbar-nav nav-tabs" id="myTab">
                 <c:forEach var="permission" items="${buffer}">
                     <c:choose>
                         <c:when test="${permission == 'Translate'}">
@@ -92,7 +92,7 @@
                         <!--permission set for Edit User and Delete User permission -->
                         <c:forEach var="permission" items="${buffer}">
                             <c:choose>
-                                <c:when test="${(permission == 'Edit User' || 'Delete User')}">
+                                <c:when test="${(permission == 'Edit User' || 'Delete User') && (permission == 'Search User')}">
                                     <li><a data-toggle="tab" href="#dropdown2">
                                         <fmt:message key="homepage.navbar.nav2.tab2"/></a>
                                     </li>
@@ -102,7 +102,9 @@
 
                         <c:forEach var="permission" items="${buffer}">
                             <c:choose>
-                                <c:when test="${(permission != 'Edit User') && (permission != 'Add User') && (permission !=  'Delete User') && (permission != 'Translate') && (permission !=  'Login')  && (permission ==  'Search User') }">
+                                <c:when test="${(permission != 'Edit User') && (permission != 'Add User') &&
+                                (permission !=  'Delete User') && (permission != 'Translate') && (permission !=  'Login')
+                                && (permission ==  'Search User') }">
                                     <li><a data-toggle="tab" href="#dropdown2">
                                         <fmt:message key="homepage.navbar.nav2.tab2"/></a>
                                     </li>
