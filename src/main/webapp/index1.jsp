@@ -1,36 +1,31 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
-
+<!DOCTYPE html>
 <html>
+<head>
+  <%--  <script src="http://code.jquery.com/jquery.min.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css" />
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>--%>
 
+    <script type="text/javascript" src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
 
+    <meta charset="utf-8">
+    <title>Example by @Bneiluj</title>
+
+    <script src="js/adduser.js"></script>
+</head>
 <body>
-<h2>Hello World!</h2>
 
+<select class="form-control " id="insightList" multiple="multiple">
 
-<c:set var="salary" scope="session" value="${2000*2}"/>
-<c:out value="${salary}"/>
+        <option value="1-1">Option 1.1</option>
+        <option value="2-1">Option 2.1</option>
+        <option value="2-2">Option 2.2</option>
+        <option value="2-3">Option 2.3</option>
 
+</select>
 
-<h1>Please login</h1>
-
-<form action="loginAuthenticate.jsp" >
-
-    Username: <input type="text" name="username"/><br/>
-    Password: <input type="password" name="password"/><br/>
-
-    <input type="submit" />
-</form>
-<font color="red"><c:if test="${not empty param.errMsg}">
-    <c:out value="${param.errMsg}" />
-</c:if></font>
-
-<fmt:setLocale value="en"/>
-
-
-
-</body>
-</html>
+<script id="example">
+    $('#insightList').multiselect({
+        enableClickableOptGroups: true
+    });
+</script>

@@ -93,6 +93,13 @@
 
     </servlet>
 
+    <servlet>
+        <servlet-name>servlet12</servlet-name>
+        <servlet-class>servelet.LoadGroupServlet</servlet-class>
+        <load-on-startup>12</load-on-startup>
+
+    </servlet>
+
 
     <servlet-mapping>
         <servlet-name>servlet1</servlet-name>
@@ -149,6 +156,11 @@
     <servlet-mapping>
         <servlet-name>servlet11</servlet-name>
         <url-pattern>/LoadCityServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>servlet12</servlet-name>
+        <url-pattern>/LoadGroupServlet</url-pattern>
     </servlet-mapping>
 
 

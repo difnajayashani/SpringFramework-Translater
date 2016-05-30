@@ -82,6 +82,7 @@ $(document).ready(function(){
 
         var country = $(this).val();
 
+
         $.ajax({
             type: "POST",
             url: "LoadCityServlet",
@@ -104,6 +105,36 @@ $(document).ready(function(){
 });
 
 
+<!--javascript to load the set of groups -->
+
+
+/*
+ * loading group list
+ */
+
+$(document).ready(function(){
+
+
+    $.ajax({
+        type: 'POST',
+        url: 'LoadGroupServlet',
+        dataType: 'JSON',
+        success: function (data) {
+
+            var slctgrp = $("#group"), option = "";
+            slctgrp.empty();
+
+            for (var i = 0; i < data.length; i++) {
+                option = option + "<option value='" + data[i].groupNm + "'>" + data[i].groupNm + "</option>";
+            }
+            slctgrp.append(option);
+        }
+
+    })
+});
+
+
+
 
 $(document).ready(function(){
     $('#date').daterangepicker({
@@ -115,6 +146,14 @@ $(document).ready(function(){
 
     });
 });
+
+/*
+$(document).ready(function(){
+    $('#group').multiselect({
+        enableClickableOptGroups: true
+         //selectAllText: true
+    });
+});*/
 
 
 $(document).ready(function(){

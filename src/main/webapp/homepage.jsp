@@ -25,9 +25,6 @@
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
-
-
-
     <!--javascript to populate the bootstrap table -->
     <script src="bootstrap_table.js"></script>
 
@@ -36,6 +33,26 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+
+    <!-- Javascript for the date picker -->
+
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" href="datepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css"/>
+    <script type="text/javascript" src="datepicker/moment.js"></script>
+    <script type="text/javascript" src="datepicker/daterangepicker.js"></script>
+
+    <!-- Include Bootstrap Multiselect CSS, JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+<%--
+    <script type="text/javascript" src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
+    <link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
+
+--%>
 
 
 

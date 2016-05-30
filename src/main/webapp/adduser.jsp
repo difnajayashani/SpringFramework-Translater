@@ -20,14 +20,13 @@
     <!--javascript for user validation and city load-->
     <script src="js/adduser.js"></script>
 
-    <!-- Javascript for the date picker -->
 
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" media="all" href="datepicker/daterangepicker.css" />
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css"/>
-    <script type="text/javascript" src="datepicker/moment.js"></script>
-    <script type="text/javascript" src="datepicker/daterangepicker.js"></script>
+    <script>
 
+    $("#dataCombo").selectpicker({
+        multiple:true
+    });
+</script>
 
 </head>
 
@@ -101,11 +100,8 @@
                                 <option value="Japan">Japan</option>
                                 <option value="Australia">Australia</option>
                             </select>
-
                         </div>
                     </div>
-
-
 
 
                     <div class="form-group">
@@ -177,15 +173,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="group" class="col-sm-4" ><fmt:message key="adduser.form.group"/></label>
+                        <label class="col-sm-4" ><fmt:message key="adduser.form.group"/></label>
                         <div class="col-sm-8">
-                            <select class="form-control" name="group" id="group" required>
+                            <select class="form-control selectpicker " name="group" id="group"  multiple="multiple">
                                 <option><fmt:message key="adduser.form.select"/></option>
-                                <option value="Administrator">Administrator</option>
-                                <option value="Customer Care">Customer Care</option>
-                                <option value="Translater">Translater</option>
 
                             </select>
+
 
                         </div>
                     </div>
