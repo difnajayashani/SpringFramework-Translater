@@ -45,8 +45,8 @@ public class LoginValidate {
 
             /** execute a query and the result is returned as a ResultSet*/
             LOG.info("Beginning to query the database based on entered details");
-//            String query = "SELECT * FROM user_data where user_name =\"" + name + "\" and password =md5(\"" + pw + "\"); ";
-            String query = "SELECT * FROM user where username =\"" + name + "\" ; ";
+            String query = "SELECT * FROM user where username=\"" + name + "\" and password=md5(\"" + pw + "\"); ";
+            //String query = "SELECT * FROM user where username =\"" + name + "\" ; ";
             LOG.info("Query Successfully returned");
 
             if(query == null){

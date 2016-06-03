@@ -8,8 +8,8 @@ $(document).ready(function () {
         success: function (result) {
 
             $('#table').bootstrapTable({
-                pagination: true,
-                pageSize: 10,
+                //pagination: true,
+                //pageSize: 10,
                // pageList: [10, 25, 50, 100, 200],
                 //search: true,
                 showColumns: true,
@@ -87,12 +87,12 @@ $(document).ready(function () {
 
 })
 
-
+/*
 $(document).ready(function () {
 
-    /*
+    *//*
      * typeahead function
-     */
+     *//*
     $("#user-search").keyup(function () {
         var sname = $("#user-search").val();
 
@@ -106,13 +106,13 @@ $(document).ready(function () {
                 $('#user-search').typeahead({
                     source: data
 
+
                 });
             }
         })
     })
 
-})
-
+})*/
 
 $(document).ready(function () {
 

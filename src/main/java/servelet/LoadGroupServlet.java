@@ -5,8 +5,6 @@ import org.apache.logging.log4j.LogManager;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.json.JsonArray;
-import javax.json.JsonObject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +23,7 @@ import java.sql.SQLException;
 public class LoadGroupServlet extends HttpServlet{
 
 
-    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(TypeAheadServlet.class);
+    private static final org.apache.logging.log4j.Logger LOGGER = LogManager.getLogger(PagemoveServlet.class);
 
     /**
      * @param request servlet instance we create to transport data to the servlet

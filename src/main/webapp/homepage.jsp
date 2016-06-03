@@ -11,7 +11,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title></title>
+    <title>Home Page</title>
 
     <!-- CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,12 +48,11 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 
-<%--
-    <script type="text/javascript" src="http://davidstutz.github.io/bootstrap-multiselect/dist/js/bootstrap-multiselect.js"></script>
-    <link rel="stylesheet" href="http://davidstutz.github.io/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" type="text/css"/>
 
---%>
 
+    <!--javascript for loading pagination-->
+    <script src="js/pagination.js"></script>
+    <script src="js/simple-bootstrap-paginator.js"></script>
 
 
 </head>
@@ -137,7 +136,7 @@
                 <c:forEach var="permission" items="${buffer}">
                     <c:choose>
                          <c:when test="${permission ==  'Login'}">
-                            <li><a href="http://localhost:8080/LogoutServlet" class="glyphicon glyphicon-log-out">
+                            <li><a href="http://localhost:8080/LogoutServlet" class="glyphicon glyphicon-log-out" id="linkLogout">
                                 <%--<span class="glyphicon glyphicon-log-out"></span>--%>
                                 <fmt:message key="homepage.navbar.logout"/></a>
                             </li>
@@ -149,55 +148,22 @@
     </nav>
 
     <!-- Top content -->
-    <div class="top-content">
+    <%--<div class="top-content">--%>
         <div class="inner-bg">
 
             <div class="row">
-
-            <c:forEach var="permission" items="${buffer}">
-
-                    <%--<c:when test="${permission == 'Add User'}">--%>
-                    <c:if test="${(permission !=  'Translate') && (permission ==  'Search User')  }">
-                    <td>
-                        <c:out value="${permission}" />
-                    </td>
-
-                    </c:if>
-
-            </c:forEach>
-
-            </div>
-
-            <div class="row">
-
-                <c:forEach var="permission" items="${buffer}">
-                 <%--   <c:choose>
-                        <c:when test="${permission ==  'Translate'}">--%>
-                            <td>
-                                <%--<c:out value="${permission}" />--%>
-                            </td>
-
-                 <%--       </c:when>
-                    </c:choose>--%>
-                </c:forEach>
-
-            </div>
-
-
-                <div class="row">
                     <h1><strong><fmt:message key="homepage.heading.bold"/></strong>
                     <fmt:message key="homepage.heading.notbold"/>
                     </h1>
-                </div>
+            </div>
 
 
 
         <!-- Nav bar tabs content -->
-        <div class="row">
-            <div class="tab-content">
+            <div class="row">
+                <div class="tab-content">
 
                 <!--translater nav-bar -->
-
                     <c:forEach var="permission" items="${buffer}">
                         <c:choose>
                             <c:when test="${permission == 'Translate'}">
@@ -242,18 +208,16 @@
 
                 </div>
             </div>
+
         </div>
 
-    </div>
-
-        <!-- Footer -->
-        <footer>
-
-            <jsp:include page="footer.jsp" />
-        </footer>
-
+    <%--</div>--%>
 
     </fmt:bundle>
     </body>
+
+<footer>
+    <jsp:include page="footer.jsp" />
+</footer>
 
 </html>

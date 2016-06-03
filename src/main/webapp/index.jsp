@@ -106,7 +106,7 @@
 
                                     <div class="col-sm-4"></div>
                                     <div class=" col-sm-4">
-                                        <button type="submit" class="btn" id="btnlogin" >Sign in!</button>
+                                        <button type="submit" class="btn btn-primary" id="btnlogin" >Sign in!</button>
 
                                     </div>
 

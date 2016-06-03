@@ -53,7 +53,7 @@ public class UpdateUserServlet extends HttpServlet {
         String umobile = request.getParameter("umobile");
         String upw = request.getParameter("upw");
 
-        String ugroup= request.getParameter("ugroup");
+        String[] ugroup= request.getParameterValues("ugroup");
 
         LOG.info("Date read from form! : {}", udate);
 
@@ -84,15 +84,23 @@ public class UpdateUserServlet extends HttpServlet {
 
                 if (updateSuccess ==1) {
                     LOG.info("Query to update the user_group table on update");
-                    String extraQuery="UPDATE user_group SET  group_id=(SELECT id FROM functional_group " +
-                            "WHERE name=\"" +ugroup+ "\") WHERE user_id=(SELECT id FROM user " +
-                            "WHERE username= \"" + uu_name + "\") ";
 
-                    stmt2=connection.prepareStatement(extraQuery);
-                    LOG.info("Query on table update executed !");
-                    stmt2.executeUpdate();
-                    LOG.info("Output the user update result");
-                    out.println(1);
+                    int rs2=0;
+                    for(int i=0; i< ugroup.length; i++) {
+
+                        String extraQuery = "UPDATE user_group SET  group_id=(SELECT id FROM functional_group " +
+                                "WHERE name=\"" + ugroup[i] + "\") WHERE user_id=(SELECT id FROM user " +
+                                "WHERE username= \"" + uu_name + "\") ";
+
+                        stmt2 = connection.prepareStatement(extraQuery);
+                        LOG.info("Query on table update executed !");
+                        rs2= stmt2.executeUpdate();
+                    }
+
+                    if(rs2 == 1) {
+                        LOG.info("Output the user update result");
+                        out.println(1);
+                    }
 
                 }
                 else

@@ -175,7 +175,7 @@
                     <div class="form-group">
                         <label class="col-sm-4" ><fmt:message key="adduser.form.group"/></label>
                         <div class="col-sm-8">
-                            <select class="form-control selectpicker " name="group" id="group"  multiple="multiple">
+                            <select class="form-control selectpicker" name="group" id="group"  multiple="multiple" required>
                                 <option><fmt:message key="adduser.form.select"/></option>
 
                             </select>
@@ -186,7 +186,7 @@
 
                     <div class="form-group">
 
-                        <button type="submit" class="btn" id="addbtn">
+                        <button type="submit" class="btn btn-primary" id="addbtn">
                             <fmt:message key="adduser.form.addbutton"/></button>
 
                     </div>

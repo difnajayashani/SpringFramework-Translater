@@ -50,33 +50,36 @@
                         <form class="form-horizontal" role="form" method="post" action="MyServletTranslate" >
                             <div class="form-group ">
                                 <div class="col-sm-6">
-
-
-                                 <textarea name="original-text" class="form-control" id="original-text" rows="5" cols="10">
-                                     <%
+                                    <%
                                         String s1= (String)request.getAttribute("original");
                                         request.setAttribute("s1",s1);
                                     %>
-                                    <c:if test="${s1 != null}"/>
-                                        <c:out value="${s1}"/>
-
-                                 </textarea>
+                                    <c:if test="${not empty s1}">
+                                        <textarea name="original-text" class="form-control" id="original-text" rows="5"
+                                                  cols="10">${s1}</textarea>
+                                    </c:if>
+                                    <c:if test="${empty s1}">
+                                        <textarea name="original-text" class="form-control" id="original-text" rows="5"
+                                                  cols="10"></textarea>
+                                    </c:if>
 
 
                                 </div>
 
                                 <div class="col-sm-6">
-
-                                    <textarea class="form-control"  name="translated-text" id="text_trans" rows="5" cols="10">
-
                                     <%
                                         String s2= (String)request.getAttribute("translated");
                                         request.setAttribute("s2",s2);
                                     %>
-                                        <c:if test="${s2 != null}"/>
-                                        <c:out value="${s2}"/>
+                                    <c:if test="${not empty s1}">
+                                        <textarea class="form-control"  name="translated-text" id="text_trans" rows="5"
+                                                  cols="10">${s2}</textarea>
+                                    </c:if>
+                                    <c:if test="${empty s1}">
+                                        <textarea class="form-control"  name="translated-text" id="text_trans" rows="5"
+                                                  cols="10"></textarea>
+                                    </c:if>
 
-                                    </textarea>
                                 </div>
                         </div>
 

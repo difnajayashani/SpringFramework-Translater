@@ -61,7 +61,7 @@ public class SearchUserServlet extends HttpServlet {
             LOG.info("Database connection obtained for user Search");
 
             st = connection.createStatement();
-            String sql ="SELECT * , DATE_FORMAT(birth_date,'%m/%d/%Y') AS niceDate FROM user WHERE username" +
+            String sql ="SELECT * , DATE_FORMAT(birth_date,'%m/%d/%Y') AS niceDate FROM user  WHERE username" +
                     " LIKE \"" +userSearched + "%\" ;";
 
             // String sql ="SELECT * , DATE_FORMAT(birth_date,'%m/%d/%Y') AS niceDate FROM user_data WHERE user_name REGEXP '^[\"" +userSearched + "\"].*$' ;";
@@ -86,6 +86,7 @@ public class SearchUserServlet extends HttpServlet {
                 a1.append("country", rs1.getString("country"));
                 a1.append("e_mail", rs1.getString("email"));
                 a1.append("mobile", rs1.getString("mobile"));
+
 
                 String cityQuery="SELECT name FROM city" +
                         " WHERE id= " +Integer.parseInt(rs1.getString("city_id")) +"; ";

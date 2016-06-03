@@ -17,6 +17,14 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- http://mvnrepository.com/artifact/junit/junit-dep -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit-dep</artifactId>
+      <version>4.8.2</version>
+    </dependency>
+
+
 
     <dependency>
       <groupId>jstl</groupId>
@@ -112,6 +120,23 @@
       <artifactId>javax.json</artifactId>
       <version>1.0.4</version>
     </dependency>
+
+    <!-- dependency for selenium automation tool  -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>2.53.0</version>
+    </dependency>
+
+    <!-- http://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-chrome-driver</artifactId>
+      <version>2.44.0</version>
+    </dependency>
+
+
+
 
   </dependencies>
 

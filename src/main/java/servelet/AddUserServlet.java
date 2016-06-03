@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.*;
 import java.io.IOException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /** This servlet is for user addition**/
@@ -47,7 +48,7 @@ public class AddUserServlet  extends HttpServlet {
         String u_name = request.getParameter("username");
         String pw = request.getParameter("password");
 
-        String group= request.getParameter("group");
+        String[] group= request.getParameterValues("group");
 
         LOG.info("value of group selected is :{}", group);
 
@@ -82,23 +83,32 @@ public class AddUserServlet  extends HttpServlet {
                 if (success) {
                     LOG.info("The user is inserted successfully");
 
+                    int rs2 = 0;
+
                     LOG.info("query to update the User_Group table");
-                    String extraQuery="INSERT INTO user_group ( `user_id` ,`group_id`)" + "VALUES " +
-                            "((SELECT id FROM user WHERE username= \"" + u_name + "\")," +
-                            "(SELECT id FROM functional_group WHERE name=\"" +group+ "\"))";
+                    for(int i=0 ; i < group.length;i++) {
+                        String extraQuery = "INSERT INTO user_group ( `user_id` ,`group_id`)" + "VALUES " +
+                                "((SELECT id FROM user WHERE username= \"" + u_name + "\")," +
+                                "(SELECT id FROM functional_group WHERE name=\"" + group[i] + "\"))";
 
 
-                    /** create a statement for User_Group database table update*/
-                    stmt = dbPool.getConnection().prepareStatement(extraQuery);
+                        /** create a statement for User_Group database table update*/
+                        stmt = dbPool.getConnection().prepareStatement(extraQuery);
 
-                    stmt.executeUpdate();
+                        rs2 = stmt.executeUpdate();
+                    }
+
+                    if (rs2 == 1){
+                        LOG.info("Registered the new user with the group updated successfully");
+                    }
+
                     LOG.info("The update is executed");
 
                    /* RequestDispatcher rd = request.getRequestDispatcher("adduser.jsp");
                     rd.forward(request, response);*/
 
                     /** reloadd the same page **/
-                    request.getRequestDispatcher("adduser.jsp").forward(request, response);;
+                    request.getRequestDispatcher("homepage.jsp").forward(request, response);;
                 }
                 else{
                     LOG.error("Error in inserting the user to database successfully");
