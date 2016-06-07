@@ -1,30 +1,21 @@
 package selenium;
 
 import c3p0.sample.DatabaseUtility;
-import javafx.scene.control.Alert;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.util.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.*;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- * Created by hsenid on 6/2/16.
+ * This class will test the add user UI
  */
 public class AdduserTest {
 
@@ -32,23 +23,29 @@ public class AdduserTest {
     private static final Logger LOG = LogManager.getLogger(AdduserTest.class);
 
     private  String baseUrl;
-    private String Url;
     private WebDriver driver;
 
 
+
+
     /** opens the browser application before any test runs**/
-    @BeforeSuite
+/*    @BeforeSuite
     public void openBrowser() {
 
         baseUrl="http://localhost:8080";
         // driver = new ChromeDriver();
         driver = new FirefoxDriver();
         driver.get(baseUrl);
-    }
+    }*/
 
     @BeforeTest
-    public void adminLogin(){
+    public void adminLogin() throws InterruptedException {
 
+        String expected= "Login Page";
+        String actual= driver.getTitle();
+        org.testng.Assert.assertEquals(actual, expected, "You are in the Home Page");
+
+        Thread.sleep(2000);
         driver.findElement(By.id("form-username")).sendKeys("difna");
         driver.findElement(By.id("form-password")).sendKeys("difna");
         driver.findElement(By.id("btnlogin")).click();
@@ -66,6 +63,7 @@ public class AdduserTest {
                {"Right First","Right Second","05/05/2016","Sri Lanka","Gampaha","right@gmail.com","+94779900071","right","right12345","right12345",new String[]{"Administrator","Translater"},"true" },
                 {"","Right Second","05/05/2016","Sri Lanka","Gampaha","right@gmail.com","+94779900071","right","right12345","right12345",new String[]{"Administrator","Translater"},"true" },
                 {"","Right Second","","Sri Lanka","Gampaha","right@gmail.com","+94779900071","right","right12345","right12345",new String[]{"Administrator","Translater"},"true" }
+                //{"Right First","Right Second","05/05/2016","Sri Lanka","Gampaha","rightgmail.com","+94779900071","right","right12345","right12345",new String[]{"Administrator","Translater"},"true" }
 
 
 
@@ -143,28 +141,17 @@ public class AdduserTest {
 
 
         org.testng.Assert.assertEquals(actual,expected);
-
-
-
-
-     // Alert alert = (Alert) driver.switchTo().alert();
-//        String text=alert.getText();
-// alert.getDialogPane().getHeaderText();
         Thread.sleep(2000);
-   /*    String msg= driver.switchTo().alert().getText();
-        org.testng.Assert.assertEquals(msg,expected);
-*/
-
-
-
-
     }
 
 
 
     @AfterMethod
-    protected void deleteUser()
-            throws ServletException, IOException {
+    protected void deleteUser() {
+
+
+        LOG.info("Reset the form fields");
+        driver.findElement(By.id("resetbtn")).click();
 
         PreparedStatement statement2 = null;
         DatabaseUtility dbPool = null;
@@ -211,23 +198,15 @@ public class AdduserTest {
                     e.printStackTrace();
                 }
             }
-
         }
-
-        driver.findElement(By.id("form-first-name")).clear();
-        driver.findElement(By.id("form-last-name")).clear();
-        // driver.findElement(By.id("date")).clear();
-        //driver.findElement(By.id("country")).clear();
-        //driver.findElement(By.id("form-city")).clear();
-        driver.findElement(By.id("form-email")).clear();
-        driver.findElement(By.id("form-mobile")).clear();
-        driver.findElement(By.id("form-username")).clear();
-        driver.findElement(By.id("form-password")).clear();
-        driver.findElement(By.id("form-password-confirm")).clear();
-
-
     }
 
 
+    @AfterTest
+    public  void logOut() throws InterruptedException {
+
+        Thread.sleep(2000);
+        driver.navigate().to("http://localhost:8080");
+    }
 
 }

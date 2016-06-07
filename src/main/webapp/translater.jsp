@@ -23,13 +23,19 @@
 
     <script>
         function myFunction(){
-            var e = document.getElementById("text_origi").value;
+            var e = document.getElementById("original-text").value;
             var e2 = document.getElementById("text_trans").value;
 
-            document.getElementById("text_origi").value = e2;
+            document.getElementById("original-text").value = e2;
 
             document.getElementById("text_trans").value = e;
 
+        }
+    </script>
+
+    <script>
+        function resetFunction() {
+            document.getElementById("translater").reset();
         }
     </script>
 </head>
@@ -47,7 +53,7 @@
 
                     <center>
 
-                        <form class="form-horizontal" role="form" method="post" action="MyServletTranslate" >
+                        <form class="form-horizontal" role="form" method="post" action="MyServletTranslate" id="translater">
                             <div class="form-group ">
                                 <div class="col-sm-6">
                                     <%
@@ -165,7 +171,6 @@
 
                     <!-- Form buttons -->
 
-
                         <div class="form-group "></div>
                         <div class="form-group "></div>
                         <div class="form-group ">
@@ -175,12 +180,14 @@
                             <div class=" col-sm-6">
 
 
-                                <input type="submit" class="btn btn-primary  " value=Translate  name="submit"/>
+                                <button type="submit" class="btn btn-primary" id="btnTranslate" ><fmt:message
+                                        key="translater.button.translate"/></button>
 
                                 <button type="button" class="btn btn-primary"  onclick="myFunction()"><fmt:message
                                         key="translater.button.swaptext"/></button>
 
-                                <input type="reset" class="btn btn-primary" value="Reset"/>
+
+                                <input class="btn btn-primary"  type="button" onclick="resetFunction()" value="Reset" >
 
 
                             </div>

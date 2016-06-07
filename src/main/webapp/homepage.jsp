@@ -148,7 +148,7 @@
     </nav>
 
     <!-- Top content -->
-    <%--<div class="top-content">--%>
+    <div class="top-content">
         <div class="inner-bg">
 
             <div class="row">
@@ -211,10 +211,9 @@
 
         </div>
 
-    <%--</div>--%>
-
+    </div>
     </fmt:bundle>
-    </body>
+</body>
 
 <footer>
     <jsp:include page="footer.jsp" />

@@ -15,8 +15,8 @@ import java.io.IOException;
  */
 public class IndexTest {
 
-    private String baseUrl;
-    private WebDriver driver;
+    public String baseUrl;
+    public WebDriver driver;
 
     /** opens the browser application before any test runs**/
     @BeforeSuite
@@ -80,15 +80,16 @@ public class IndexTest {
 
         Thread.sleep(2000);
         driver.navigate().to("http://localhost:8080");
+        Thread.sleep(2000);
 
     }
 
 
     /** close the browser after running all the tests**/
-    @AfterSuite
+  /*  @AfterSuite
     public void closeBrowser() throws IOException, InterruptedException {
         driver.quit();
 
-    }
+    }*/
 
 }

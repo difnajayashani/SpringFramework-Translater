@@ -28,6 +28,12 @@
     });
 </script>
 
+    <script>
+        function myFunction() {
+            document.getElementById("adduser_form").reset();
+        }
+    </script>
+
 </head>
 
 
@@ -188,6 +194,8 @@
 
                         <button type="submit" class="btn btn-primary" id="addbtn">
                             <fmt:message key="adduser.form.addbutton"/></button>
+
+                        <input id="resetbtn" type="button" onclick="myFunction()" value="Reset form" >
 
                     </div>
 

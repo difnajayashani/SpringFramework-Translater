@@ -135,6 +135,12 @@
       <version>2.44.0</version>
     </dependency>
 
+    <!-- http://mvnrepository.com/artifact/org.webjars.npm/frisby -->
+    <dependency>
+      <groupId>org.webjars.npm</groupId>
+      <artifactId>frisby</artifactId>
+      <version>0.8.5</version>
+    </dependency>
 
 
 
